@@ -1,0 +1,38 @@
+dist: trusty
+language: php
+
+php:
+  - "7.3"
+
+cache:
+  directories:
+    - "$HOME/.phive"
+    - "$HOME/.phive/phars"
+    - "$HOME/.cache/composer"
+    - "$HOME/.composer/cache"
+    - "$HOME/.gnupg"
+
+before_script:
+  - composer self-update
+  - travis_retry composer install --no-interaction --prefer-dist
+  - |
+    wget -O phive.phar https://phar.io/releases/phive.phar
+    wget -O phive.phar.asc https://phar.io/releases/phive.phar.asc
+    gpg --keyserver pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79
+    gpg --verify phive.phar.asc phive.phar
+    rm phive.phar.asc
+    chmod +x phive.phar
+    sudo mv phive.phar /usr/local/bin/phive
+
+script:
+  - phive --no-progress install --trust-gpg-keys 4AA394086372C20A,C5095986493B4AA0,AFA6EAAB339B841E,31C7E470E2138192
+  - tools/phpunit --coverage-text --coverage-clover=coverage.clover
+  - tools/infection
+
+after_script:
+  - |
+    wget https://scrutinizer-ci.com/ocular.phar
+    php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+notifications:
+  email: false

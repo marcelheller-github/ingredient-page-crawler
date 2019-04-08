@@ -1,0 +1,32 @@
+{
+    "name": "social-food/ingredient-page-crawler",
+    "description": "food solutions",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Marcel Heller",
+            "email": "marcel.heller@me.com"
+        },
+        {
+            "name": "Maik Hilker",
+            "email": "maikhilker89@gmail.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": "^7.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "SocialFoodSolutions\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SocialFoodSolutions\\Test\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="social-food/ingredient-page-crawler">
+    <description>The coding standard of social-food/ingredient-name-importer</description>
+
+    <config name="ignore_warnings_on_exit" value="1" />
+    <config name="ignore_errors_on_exit" value="1" />
+
+    <arg value="p" />
+    <arg name="colors" />
+    <arg value="s" />
+
+    <rule ref="PSR12" />
+</ruleset>
