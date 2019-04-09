@@ -1,4 +1,4 @@
-/vendor
-/.idea
-/tools
-/.phpunit.result.cache
+vendor
+.idea
+tools
+.phpunit.result.cache

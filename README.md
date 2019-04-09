@@ -1,4 +1,6 @@
-# Ingredient Name Importer
+# Ingredient Page Crawler
+
+![image Info](./planning/ingredient-page-crawler-event-storming.png)
 
 ## Install Dependencies
 
