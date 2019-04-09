@@ -1,6 +1,6 @@
 # Ingredient Page Crawler
 
-![image Info](./planning/ingredient-page-crawler-event-storming.png)
+![image Info](./planning/ingredient-page-crawler.png)
 
 ## Install Dependencies
 
