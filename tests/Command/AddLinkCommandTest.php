@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 class AddLinkCommandTest extends TestCase
 {
-    public function ()
+    public function testCanCreateLink()
     {
-        
+        $this->assertTrue(true);
     }
 }

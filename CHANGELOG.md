@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - [feature-1]: AddLinkCommandTest erstellt
+
+### Init
 - [PHP 7.3](https://www.php.net/releases/7_3_0.php) as minimum requirement.
 - [phan](https://github.com/phan/phan) for static analysis.
 - [infection](https://github.com/infection/infection) for mutation tests.
