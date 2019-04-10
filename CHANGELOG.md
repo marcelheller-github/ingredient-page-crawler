@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- [feature-1]: AddLinkCommandTest erstellt
+- [feature-1]: tests/ValueObject/LinkTest.php 
+- [feature-1]: src/ValueObject/Link.php
+- [feature-1]: tests/Command/AddLinkCommandTest.php
+- [feature-1]: src/Command/AddLinkCommand.php 
+- [feature-1]: tests/Event/LinkAddedToListEventTest.php 
+- [feature-1]: src/Event/LinkAddedToListEvent.php
 
 ### Init
 - [PHP 7.3](https://www.php.net/releases/7_3_0.php) as minimum requirement.
