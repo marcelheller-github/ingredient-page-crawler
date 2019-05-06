@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SocialFoodSolutions\Event;
 
-use SocialFoodSolutions\ValueObject\Link;
+use SocialFood\IngredientPageCrawler\Event\EventInterface;
+use SocialFood\IngredientPageCrawler\ValueObject\Link;
 
-class LinkAddedToListEvent
+class LinkAddedEvent implements EventInterface
 {
     /** @var Link */
     private $link;
@@ -19,5 +20,10 @@ class LinkAddedToListEvent
     public function getLink(): Link
     {
         return $this->link;
+    }
+
+    public function getEvent(): EventInterface
+    {
+        return $this;
     }
 }

@@ -18,16 +18,17 @@
     },
     "require": {
         "php": "^7.3",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "ext-pdo": "*"
     },
     "autoload": {
         "psr-4": {
-            "SocialFoodSolutions\\": "src/"
+            "SocialFood\\IngredientPageCrawler\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SocialFoodSolutions\\Test\\": "tests/"
+            "SocialFood\\IngredientPageCrawler\\Test\\": "tests/"
         }
     }
 }

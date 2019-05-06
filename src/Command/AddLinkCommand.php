@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace SocialFoodSolutions\Command;
+namespace SocialFood\IngredientPageCrawler\Command;
 
-use SocialFoodSolutions\ValueObject\Link;
+use SocialFood\IngredientPageCrawler\ValueObject\Link;
 
-class AddLinkCommand
+final class AddLinkCommand
 {
     /** @var Link */
     private $link;
 
-    public function __construct(string $link)
+    public function __construct(Link $link)
     {
-        $this->link = Link::from($link);
+        $this->link = $link;
     }
 
     public function getLink(): Link

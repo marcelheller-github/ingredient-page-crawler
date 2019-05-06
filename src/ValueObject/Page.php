@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SocialFood\IngredientPageCrawler\ValueObject;
 
-final class Link extends AbstractStringValue implements StringValueInterface
+final class Page extends AbstractStringValue implements StringValueInterface
 {
-    public static function from(string $link): Link
+    public static function from(string $page): Page
     {
-        return new self($link);
+        return new self($page);
     }
 
     public function asString(): string

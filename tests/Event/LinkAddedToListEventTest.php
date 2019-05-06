@@ -2,27 +2,23 @@
 
 declare(strict_types=1);
 
-namespace SocialFoodSolutions\Test\Event;
+namespace SocialFood\IngredientPageCrawler\Test\Event;
 
 use PHPUnit\Framework\TestCase;
-use SocialFoodSolutions\Event\LinkAddedToListEvent;
-use SocialFoodSolutions\ValueObject\Link;
+use SocialFoodSolutions\Event\LinkAddedEvent;
+use SocialFood\IngredientPageCrawler\ValueObject\Link;
 
 /**
- * @coversDefaultClass \SocialFoodSolutions\Event\LinkAddedToListEvent
+ * @coversDefaultClass \SocialFoodSolutions\Event\LinkAddedEvent
  */
 class LinkAddedToListEventTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     * @covers ::getLink
-     */
     public function test()
     {
         $linkStr = 'https://www.chefkoch.de/uebersicht.php';
         $link = Link::from($linkStr);
-        $linkAddedToListEvent = new LinkAddedToListEvent($link);
+        $linkAddedToListEvent = new LinkAddedEvent($link);
 
-        $this->assertEquals($linkStr, $linkAddedToListEvent->getLink()->asString());
+        $this->assertEquals($linkStr, $linkAddedToListEvent->getEvent()->asString());
     }
 }

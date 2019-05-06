@@ -2,26 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SocialFoodSolutions\Test\ValueObject;
+namespace SocialFood\IngredientPageCrawler\Test\ValueObject;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
-use SocialFoodSolutions\ValueObject\Link;
+use SocialFood\IngredientPageCrawler\ValueObject\Link;
 
 /**
- * @coversDefaultClass \SocialFoodSolutions\ValueObject\Link
+ * @coversDefaultClass \SocialFoodSolutions\ValueObject\LinkValue
  */
 class LinkTest extends TestCase
 {
-    /**
-     * @covers ::__construct
-     * @covers ::from
-     */
-    public function testLinkIsInstanceOfLink()
-    {
-        $link = Link::from('link');
-        $this->assertInstanceOf(Link::class, $link);
-    }
-
     /**
      * @covers ::from
      * @covers ::asString
@@ -30,5 +21,16 @@ class LinkTest extends TestCase
     {
         $link = Link::from('link');
         $this->assertEquals('link', $link->asString());
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::from
+     */
+    public function testThrowExceptionIfLinkEmpty()
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Link can not be empty!');
+        Link::from('');
     }
 }
