@@ -1,7 +1,6 @@
 {
     "name": "social-food/ingredient-page-crawler",
     "description": "food solutions",
-    "type": "project",
     "license": "proprietary",
     "authors": [
         {
@@ -19,16 +18,22 @@
     "require": {
         "php": "^7.3",
         "ext-mbstring": "*",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-openssl": "*",
+        "slim/slim": "^3.12"
     },
     "autoload": {
         "psr-4": {
-            "SocialFood\\IngredientPageCrawler\\": "src/"
+            "SocialFood\\Application\\": "src/Application/",
+            "SocialFood\\IngredientPageCrawler\\": "src/IngredientPageCrawler/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SocialFood\\IngredientPageCrawler\\Test\\": "tests/"
+            "SocialFood\\Application\\Test\\": "tests/Application/",
+            "SocialFood\\IngredientPageCrawler\\Test\\": "tests/IngredientPageCrawler/"
         }
     }
 }

@@ -7,12 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- [feature-1]: tests/ValueObject/LinkTest.php 
-- [feature-1]: src/ValueObject/Link.php
-- [feature-1]: tests/Command/AddLinkCommandTest.php
-- [feature-1]: src/Command/AddLinkCommand.php 
-- [feature-1]: tests/Event/LinkAddedToListEventTest.php 
-- [feature-1]: src/Event/LinkAddedToListEvent.php
+- [feature-1]: tests/IngredientPageCrawler/ValueObject/LinkTest.php 
+- [feature-1]: src/IngredientPageCrawler/ValueObject/Link.php
+- [feature-1]: tests/IngredientPageCrawler/Command/AddLinkCommandTest.php
+- [feature-1]: src/IngredientPageCrawler/Command/AddLinkCommand.php 
+- [feature-1]: tests/IngredientPageCrawler/Event/LinkAddedToListEventTest.php 
+- [feature-1]: src/Application/Event/LinkAddedToListEvent.php
 
 
 ### Init
