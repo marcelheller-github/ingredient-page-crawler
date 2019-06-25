@@ -22,7 +22,8 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-openssl": "*",
-        "slim/slim": "^3.12"
+        "slim/slim": "^3.12",
+        "cheprasov/php-cli-args": "dev-master"
     },
     "autoload": {
         "psr-4": {

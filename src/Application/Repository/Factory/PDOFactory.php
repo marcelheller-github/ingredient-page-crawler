@@ -30,3 +30,7 @@ class PDOFactory implements FactoryInterface
         return $pdo;
     }
 }
+
+// user     = debian-sys-maint
+// password = 5eVw62bEz4PbNn0e
+

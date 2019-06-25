@@ -17,18 +17,18 @@ class DependencyLoader
     {
         $dependencies = $container->get('dependencies');
 
-        foreach ($dependencies['invokables'] as $fqcn) {
-            $container[$fqcn] = new $fqcn;
+        foreach ($dependencies['invokables'] as $class) {
+            $container[$class] = new $class;
         }
 
-        foreach ($dependencies['factories'] as $fqcn => $factoryFqcn) {
-            $factory = new $factoryFqcn;
+        foreach ($dependencies['factories'] as $class => $factory) {
+            $factory = new $factory;
 
             if (!$factory instanceof FactoryInterface) {
-                throw new Exception('The factory "' . $factoryFqcn . '" does not implement FactoryInterface.');
+                throw new Exception('The factory "' . $factory . '" does not implement FactoryInterface.');
             }
 
-            $container[$fqcn] = ($factory)($container);
+            $container[$class] = ($factory)($container);
         }
     }
 }

@@ -4,6 +4,7 @@ namespace Synatix\Account\Repository;
 
 use SocialFood\Application\Aggregate\AbstractAggregate;
 use SocialFood\Application\Repository\RepositoryInterface;
+use SocialFood\Application\Wrapper\MysqlWrapper;
 use Synatix\Account\Aggregate\AccountAggregate;
 
 abstract class AbstractAggregateMysqlRepository implements RepositoryInterface
