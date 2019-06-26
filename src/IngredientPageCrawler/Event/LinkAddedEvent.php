@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SocialFoodSolutions\Event;
+namespace SocialFood\IngredientPageCrawler\Event;
 
 use SocialFood\Application\Event\AbstractEvent;
 use SocialFood\Application\Event\EventInterface;
-use SocialFood\IngredientPageCrawler\ValueObject\CrawledLink;
 use SocialFood\IngredientPageCrawler\ValueObject\Link;
 
-class CrawledLinkAddedEvent extends AbstractEvent
+class LinkAddedEvent extends AbstractEvent
 {
     /** @var Link */
     private $link;
@@ -19,7 +18,7 @@ class CrawledLinkAddedEvent extends AbstractEvent
         $this->link = $link;
     }
 
-    public function from(string $link): CrawledLinkAddedEvent
+    public function from(string $link): LinkAddedEvent
     {
         return new self(Link::from($link));
     }
@@ -34,10 +33,10 @@ class CrawledLinkAddedEvent extends AbstractEvent
         return $this;
     }
 
-    public static function fromArray(array $arrayData): AbstractEvent
+    public static function fromArray(array $data): AbstractEvent
     {
         return new self(
-            Link::from($arrayData['link'])
+            Link::from($data['link'])
         );
     }
 

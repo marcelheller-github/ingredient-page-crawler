@@ -8,5 +8,5 @@ use SocialFood\Application\Command\CommandInterface;
 
 interface CommandHandlerInterface
 {
-    public function handleCommand(CommandInterface $command): void;
+    public function executeCommand(CommandInterface $command): void;
 }

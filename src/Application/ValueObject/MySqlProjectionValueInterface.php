@@ -6,7 +6,7 @@ namespace SocialFood\Application\ValueObject;
 
 interface MySqlProjectionValueInterface
 {
-    public static function fromDatabaseArray(array $attributes): self;
+    public static function fromDatabaseArray(array $data): self;
 
     public function getPrimaryKey(): PrimaryKeyInterface;
 

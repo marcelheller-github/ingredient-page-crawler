@@ -6,7 +6,7 @@ namespace SocialFood\Application\Event;
 
 interface EventInterface
 {
-    public static function fromArray(array $arrayData): AbstractEvent;
+    public static function fromArray(array $data);
 
     public function toJson(): string;
 }

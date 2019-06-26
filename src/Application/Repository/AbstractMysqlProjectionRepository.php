@@ -97,7 +97,10 @@ abstract class AbstractMysqlProjectionRepository
     {
         $primaryKey        = $mysqlProjectionValueObject->getPrimaryKey();
         $parameters        = $mysqlProjectionValueObject->getAttributesAsMysqlParameters();
-        $parameters[':id'] = $primaryKey->primaryKey();
+
+        if ($primaryKey !== null) {
+            $parameters[':id'] = $primaryKey->primaryKey();
+        }
 
         $parameterKeysArray = array_keys($parameters);
         $parameterKeys      = implode(', ', $parameterKeysArray);
@@ -107,11 +110,11 @@ abstract class AbstractMysqlProjectionRepository
         $queryString = 'INSERT INTO ' . $this->table . ' (' . $parameterKeysWithoutColon . ') VALUES (' .
             $parameterKeys . ')';
 
-        $recordAlreadyExists = $this->doesRecordAlreadyExist($primaryKey);
-
-        if ($recordAlreadyExists) {
-            $queryString = $this->buildUpdateQuery($parameterKeysArray);
-        }
+//        $recordAlreadyExists = $this->readBy($parameters);
+//
+//        if (count($recordAlreadyExists) !== 0) {
+//            $queryString = $this->buildUpdateQuery($parameterKeysArray);
+//        }
 
         $this->mysqlWrapper->query($queryString, $parameters);
     }
@@ -130,7 +133,7 @@ abstract class AbstractMysqlProjectionRepository
         $this->mysqlWrapper->query($queryString, [':id' => $id]);
     }
 
-    private function doesRecordAlreadyExist(PrimaryKeyInterface $primaryKey): bool
+    public function doesRecordAlreadyExist(PrimaryKeyInterface $primaryKey): bool
     {
         $id = $primaryKey->primaryKey();
 

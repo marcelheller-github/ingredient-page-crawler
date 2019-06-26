@@ -6,5 +6,5 @@ namespace SocialFood\Application\Command;
 
 interface CommandInterface
 {
-    public static function fromArray(array $arrayData): AbstractCommand;
+    public static function fromArray(array $data): self;
 }

@@ -14,7 +14,7 @@ class EventBusFactory implements FactoryInterface
     {
         $config           = $container->get('bus');
         $eventBusConfig   = $config['eventBus'];
-        $eventBus         = EventBus::getInstance();
+        $eventBus         = $container->get(EventBus::class);
 
         foreach ($eventBusConfig as $handler) {
             $handlerInstance   = $container->get($handler);

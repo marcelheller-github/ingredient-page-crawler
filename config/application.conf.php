@@ -19,7 +19,12 @@ return [
     'console' => [
         'registerDomnain' => [
             'controller' => RegisterDomainConsoleController::class,
-            'params'     => [],
+            'params'     => [
+                'domain' => [
+                    'default' => '',
+                    'alias' => 'd'
+                ]
+            ],
         ],
     ]
 ];

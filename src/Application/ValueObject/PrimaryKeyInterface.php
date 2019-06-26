@@ -6,5 +6,5 @@ namespace SocialFood\Application\ValueObject;
 
 interface PrimaryKeyInterface
 {
-    public function primaryKey(): string;
+    public function primaryKey(): ?string;
 }

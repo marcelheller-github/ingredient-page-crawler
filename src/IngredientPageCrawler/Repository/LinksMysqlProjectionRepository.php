@@ -6,16 +6,16 @@ namespace SocialFood\IngredientPageCrawler\Repository;
 
 use SocialFood\Application\Repository\AbstractMysqlProjectionRepository;
 use SocialFood\Application\Wrapper\MysqlWrapper;
-use SocialFood\IngredientPageCrawler\ValueObject\Page;
+use SocialFood\IngredientPageCrawler\ValueObject\Link;
 
-class PagesMysqlProjectionRepository extends AbstractMysqlProjectionRepository
+class LinksMysqlProjectionRepository extends AbstractMysqlProjectionRepository
 {
     public function __construct(MysqlWrapper $mysqlWrapper)
     {
         parent::__construct(
             $mysqlWrapper,
-            Page::class,
-            'pages_projection'
+            Link::class,
+            'links_projection'
         );
     }
 }

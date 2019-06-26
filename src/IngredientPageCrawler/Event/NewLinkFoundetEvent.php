@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SocialFoodSolutions\Event;
+namespace SocialFood\IngredientPageCrawler\Event;
 
+use Exception;
 use SocialFood\Application\Event\AbstractEvent;
-use SocialFood\Application\Event\EventInterface;
-use SocialFood\IngredientPageCrawler\ValueObject\CrawledLink;
 use SocialFood\IngredientPageCrawler\ValueObject\Link;
 
 class NewLinkFoundetEvent extends AbstractEvent
@@ -24,32 +23,35 @@ class NewLinkFoundetEvent extends AbstractEvent
         return new self(Link::from($link));
     }
 
+    public static function fromLink(Link $link): NewLinkFoundetEvent
+    {
+        return new self($link);
+    }
+
+    public static function fromArray(array $data): NewLinkFoundetEvent
+    {
+        if (!array_key_exists('link', $data)) {
+            throw new Exception(self::class . ': Key "link" does not exist.');
+        }
+
+        if (!is_string($data['link'])) {
+            throw new Exception(self::class . ': "link" must be a string.');
+        }
+
+        return new self(
+            Link::from($data['link'])
+        );
+    }
+
     public function getLink(): Link
     {
         return $this->link;
     }
 
-    public function getEvent(): EventInterface
-    {
-        return $this;
-    }
-
-    public static function fromArray(array $arrayData): AbstractEvent
-    {
-        return new self(
-            Link::from($arrayData['link'])
-        );
-    }
-
     public function toJson(): string
     {
         return json_encode([
-            'link' => $this->link,
+            'link' => $this->link->asString(),
         ]);
-    }
-
-    public static function fromObject(CrawledLink $crawledLink): AbstractEvent
-    {
-        return new self($crawledLink->getLink());
     }
 }

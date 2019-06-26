@@ -14,7 +14,7 @@ class CommandBusFactory implements FactoryInterface
     {
         $config           = $container->get('bus');
         $commandBusConfig = $config['commandBus'];
-        $commandBus       = CommandBus::getInstance();
+        $commandBus       = $container->get(CommandBus::class);
 
         foreach ($commandBusConfig as $command => $handler) {
             $handlerInstance   = $container->get($handler);

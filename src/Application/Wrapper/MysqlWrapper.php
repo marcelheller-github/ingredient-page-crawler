@@ -20,6 +20,8 @@ class MysqlWrapper
 
     public function query(string $queryString, array $parameters)
     {
+        var_dump($queryString);
+        var_dump($parameters);
         $statement = $this->pdo->prepare($queryString);
         $this->executeStatement($statement, $parameters);
 

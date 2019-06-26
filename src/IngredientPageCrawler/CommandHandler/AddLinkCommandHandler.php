@@ -4,30 +4,44 @@ declare(strict_types=1);
 
 namespace SocialFood\IngredientPageCrawler\CommandHandler;
 
-use SocialFood\IngredientPageCrawler\Aggregate\LinkAggregate;
+use SocialFood\Application\Bus\EventBus;
+use SocialFood\Application\Command\CommandInterface;
+use SocialFood\Application\CommandHandler\CommandHandlerInterface;
 use SocialFood\IngredientPageCrawler\Command\AddLinkCommand;
-use SocialFood\IngredientPageCrawler\Projection\CrawledLinksProjection;
+use SocialFood\IngredientPageCrawler\Crawler\PageCrawler;
+use SocialFood\IngredientPageCrawler\Helper\CMessage;
+use SocialFood\IngredientPageCrawler\Projection\LinksProjection;
 
-class AddLinkCommandHandler
+class AddLinkCommandHandler implements CommandHandlerInterface
 {
-    /** @var CrawledLinksProjection */
+    /** @var EventBus */
+    private $eventBus;
+
+    /** @var LinksProjection */
     private $linkProjection;
 
-    public function __construct(CrawledLinksProjection $crawledLinksProjection)
+    public function __construct(EventBus $eventBus, LinksProjection $crawledLinksProjection)
     {
+        $this->eventBus       = $eventBus;
         $this->linkProjection = $crawledLinksProjection;
     }
 
-    public function executeCommand(AddLinkCommand $command): void
+    /**
+     * @param CommandInterface|AddLinkCommand $command
+     */
+    public function executeCommand(CommandInterface $command): void
     {
-        $linkExists    = $this->linkProjection->hasLink($command->getLink());
-        $linkAggregate = LinkAggregate::create($command->getLink());
+        CMessage::text( ' >> ' .  __METHOD__);
 
-        if ($linkExists === false) {
-            $linkAggregate->createEvent();
+        $link             = $command->getLink();
+        $linkExist = $this->linkProjection->linkDoesExist($link);
 
-            if ()
+        if ($linkExist) {
+            CMessage::text('Link "' . $link->asString() . '" wurde bereits verarbeitet!');
+            return;
         }
 
+        $pageCrawler = PageCrawler::initPage($link);
+        $this->eventBus->publishEvents($pageCrawler->getEventCollection());
     }
 }

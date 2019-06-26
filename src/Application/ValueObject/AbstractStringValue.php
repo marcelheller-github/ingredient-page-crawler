@@ -13,14 +13,17 @@ abstract class AbstractStringValue implements StringInterface
 
     protected function __construct(string $value)
     {
+        $this->isValid($value);
         $this->validate($value);
         $this->value = $value;
     }
 
-    protected function validate(string $value): void
+    protected function isValid(string $value): void
     {
         if ($value === '') {
             throw new Exception('AbstractStringValue can not be empty!');
         }
     }
+
+    abstract protected function validate(string $value): void;
 }

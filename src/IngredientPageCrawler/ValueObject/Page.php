@@ -13,43 +13,43 @@ class Page implements MySqlProjectionValueInterface, JsonSerializable
     /** @var PageId */
     private $pageId;
 
-    /** @var PageContent */
-    private $pageContent;
+    /** @var Content */
+    private $content;
 
     /** @var Link */
     private $link;
 
-    private function __construct(PageId $pageId, PageContent $pageContent, Link $link)
+    private function __construct(PageId $pageId, Content $content, Link $link)
     {
-        $this->pageId      = $pageId;
-        $this->pageContent = $pageContent;
-        $this->link        = $link;
+        $this->pageId  = $pageId;
+        $this->content = $content;
+        $this->link    = $link;
     }
 
-    public function from(string $pageId, string $pageContent, string $link): Page
+    public static function from(string $pageId, string $content, string $link): Page
     {
         return new self(
             PageId::from($pageId),
-            PageContent::from($pageContent),
+            Content::from($content),
             Link::from($link),
         );
     }
 
-    public function create(string $pageContent, string $link): Page
+    public static function create(Content $content, Link $link): Page
     {
         return new self(
             PageId::create(),
-            PageContent::from($pageContent),
-            Link::from($link),
+            $content,
+            $link
         );
     }
 
-    public static function fromDatabaseArray(array $attributes): MySqlProjectionValueInterface
+    public static function fromDatabaseArray(array $data): MySqlProjectionValueInterface
     {
         return new self(
-            PageId::from($attributes['id']),
-            PageContent::from($attributes['content']),
-            Link::from($attributes['link'])
+            PageId::from($data['id']),
+            Content::from($data['content']),
+            Link::from($data['link'])
         );
     }
 
@@ -61,7 +61,7 @@ class Page implements MySqlProjectionValueInterface, JsonSerializable
     public function getAttributesAsMysqlParameters(): array
     {
         return [
-            ':content' => $this->pageContent->asString(),
+            ':content' => $this->content->asString(),
             ':link'    => $this->link->asString(),
         ];
     }
@@ -71,9 +71,9 @@ class Page implements MySqlProjectionValueInterface, JsonSerializable
         return $this->pageId;
     }
 
-    public function getPageContent(): PageContent
+    public function getContent(): Content
     {
-        return $this->pageContent;
+        return $this->content;
     }
 
     public function getLink(): Link
@@ -85,7 +85,7 @@ class Page implements MySqlProjectionValueInterface, JsonSerializable
     {
         return json_encode([
             'id'      => $this->pageId->asString(),
-            'content' => $this->pageContent->asString(),
+            'content' => $this->content->asString(),
             'link'    => $this->link->asString(),
         ]);
     }
@@ -94,7 +94,7 @@ class Page implements MySqlProjectionValueInterface, JsonSerializable
     {
         return [
             'id'      => $this->pageId->asString(),
-            'content' => $this->pageContent->asString(),
+            'content' => $this->content->asString(),
             'link'    => $this->link->asString(),
         ];
     }

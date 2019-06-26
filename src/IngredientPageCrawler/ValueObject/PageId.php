@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace SocialFood\IngredientPageCrawler\ValueObject;
 
-use Exception;
 use SocialFood\Application\ValueObject\PrimaryKeyInterface;
 use SocialFood\Application\ValueObject\Uuid;
 
-class PageId implements PrimaryKeyInterface
+final class PageId implements PrimaryKeyInterface
 {
     /** @var string */
     private $pageId;
 
     private function __construct(string $pageId)
     {
-        $this->validate($pageId);
+        $this->isValid($pageId);
         $this->pageId = $pageId;
     }
 
@@ -34,42 +33,39 @@ class PageId implements PrimaryKeyInterface
         return $this->pageId;
     }
 
+    private function isValid(string $pageId): bool
+    {
+        if (empty($pageId)) {
+            return false;
+        }
+
+        $accountIdArray = explode('-', $pageId);
+
+        if (strlen($accountIdArray[0]) !== 8) {
+            return false;
+        }
+
+        if (strlen($accountIdArray[1]) !== 4) {
+            return false;
+        }
+
+        if (strlen($accountIdArray[2]) !== 4) {
+            return false;
+        }
+
+        if (strlen($accountIdArray[3]) !== 4) {
+            return false;
+        }
+
+        if (strlen($accountIdArray[4]) !== 12) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function primaryKey(): string
     {
         return $this->pageId;
-    }
-
-    private function validate(string $pageId)
-    {
-        if (empty($pageId)) {
-            throw new Exception(get_class($this) . ' can not be empty!');
-        }
-
-        $pageIdArray       = explode('-', $pageId);
-        $invalidUuidFormat = false;
-
-        if (strlen($pageIdArray[0]) !== 8) {
-            $invalidUuidFormat = true;
-        }
-
-        if (strlen($pageIdArray[1]) !== 4) {
-            $invalidUuidFormat = true;
-        }
-
-        if (strlen($pageIdArray[2]) !== 4) {
-            $invalidUuidFormat = true;
-        }
-
-        if (strlen($pageIdArray[3]) !== 4) {
-            $invalidUuidFormat = true;
-        }
-
-        if (strlen($pageIdArray[4]) !== 12) {
-            $invalidUuidFormat = true;
-        }
-
-        if ($invalidUuidFormat) {
-            throw new Exception(get_class($this) . ' can not create with invalid UUID!');
-        }
     }
 }
