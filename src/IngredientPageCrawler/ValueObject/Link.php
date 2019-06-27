@@ -9,7 +9,7 @@ use SocialFood\Application\ValueObject\AbstractStringValue;
 use SocialFood\Application\ValueObject\MySqlProjectionValueInterface;
 use SocialFood\Application\ValueObject\PrimaryKeyInterface;
 
-final class Link extends AbstractStringValue implements PrimaryKeyInterface, MySqlProjectionValueInterface
+final class Link extends AbstractStringValue implements MySqlProjectionValueInterface
 {
     public static function from(string $link): Link
     {
@@ -40,11 +40,6 @@ final class Link extends AbstractStringValue implements PrimaryKeyInterface, MyS
         return $this->value;
     }
 
-    public function primaryKey(): ?string
-    {
-        return null;
-    }
-
     public static function fromDatabaseArray(array $data): MySqlProjectionValueInterface
     {
         return new self(
@@ -54,7 +49,7 @@ final class Link extends AbstractStringValue implements PrimaryKeyInterface, MyS
 
     public function getPrimaryKey(): PrimaryKeyInterface
     {
-        return $this;
+        return $this->id;
     }
 
     public function getAttributesAsMysqlParameters(): array

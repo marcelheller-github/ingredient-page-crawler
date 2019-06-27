@@ -10,7 +10,7 @@ return [
         'db' => [
             'host'     => 'localhost',
             'user'     => 'testing',
-            'password' => 'jv4i7uRBakq3LTql',
+            'password' => '1234',
             'dbname'   => 'testing_ingredient_page_crawler',
         ]
     ],
